@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Assigns a cancellation error message to the outcomeMessage variable. Note: This Assignment is a placeholder for enablement purposes and must be reconfigured in order define the outcomeMessage variable meaningfully.</description>
+        <name>AssignErrorMessage</name>
+        <label>Assign Error Message to Variable</label>
+        <locationX>314</locationX>
+        <locationY>242</locationY>
+        <assignmentItems>
+            <assignToReference>outcomeMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>The order is not eligible for cancellation</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Assigns a cancellation success message to the outcomeMessage variable. Note: This Assignment is a placeholder for enablement purposes and must be reconfigured in order to define the outcomeMessage variable meaningfully.</description>
+        <name>AssignSuccessMessage</name>
+        <label>Assign Success Message to Variable</label>
+        <locationX>50</locationX>
+        <locationY>242</locationY>
+        <assignmentItems>
+            <assignToReference>outcomeMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>The order was successfully cancelled.</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <description>Determines whether specified order can be canceled. Note: This decision defaults is a placeholder for enablement purposes and must be reconfigured in order to reference your order management system. Placeholder output is Yes.</description>
+        <name>IsOrderCancellable</name>
+        <label>Can cancel order?</label>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
+        <defaultConnector>
+            <targetReference>AssignErrorMessage</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No (Default)</defaultConnectorLabel>
+        <rules>
+            <name>CanCancelOrder</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>orderNumber</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignSuccessMessage</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Cancel Order Test {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Cancel Order Test</label>
+    <overriddenFlow>SvcCopilotTmpl__CancelOrder</overriddenFlow>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>IsOrderCancellable</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Stores the order number provided by the customer to cancel.</description>
+        <name>orderNumber</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores the message that lets the customer know whether the order was successfully cancelled. Note: This variable is a placeholder for enablement purposes and the process of assigning it a value must be reconfigured with the rest of the Flow in order for it to contain a meaningful value.</description>
+        <name>outcomeMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>
