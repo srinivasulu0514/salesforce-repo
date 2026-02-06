@@ -3,6 +3,11 @@ global class EmailToCaseHandler implements Messaging.InboundEmailHandler {
         // Create a new InboundEmailResult object
         Messaging.InboundEmailResult result = new Messaging.InboundEmailResult();
         
+
+        
+
+
+        hhff
         try {
             // Extract the email subject and body
             String subject = email.subject;
