@@ -1,3 +1,3 @@
-public class NumberChecker {
+public class NumberChecker2 {
 
 }
