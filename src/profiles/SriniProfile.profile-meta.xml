@@ -4,7 +4,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Test_Field__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <userLicense>Customer Community</userLicense>
     <userPermissions>
